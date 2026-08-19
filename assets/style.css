@@ -48,6 +48,7 @@ a{ color: inherit; text-decoration: none; }
   font-family: 'NaturalMonoAltRegular', 'Courier New', monospace;
   font-size: 0.85rem;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
   padding-bottom: 3px;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
