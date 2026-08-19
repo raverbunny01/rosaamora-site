@@ -1,0 +1,282 @@
+/* ============================================
+   Rosa Amora — minimal build
+   Full-color background, logo only, no copy.
+   ============================================ */
+
+:root{
+  --bg: #F9F5EC;
+  --ink: #1f1e1b;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{ height: 100%; }
+
+html{
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+img{ max-width:100%; display:block; }
+
+a{ color: inherit; text-decoration: none; }
+
+/* ---------- Top nav — visible only over the home screen ---------- */
+.site-nav{
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: clamp(20px, 4vw, 40px);
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.site-nav.is-hidden{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-nav a{
+  font-family: 'NaturalMonoAltRegular', 'Courier New', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.site-nav a:hover{ border-color: var(--ink); }
+
+/* ---------- Home ---------- */
+.home{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  scroll-snap-align: start;
+}
+
+.home-logo{
+  width: clamp(320px, 92vw, 1240px);
+}
+
+/* ---------- Collection sections ---------- */
+.collection{
+  min-height: 100vh;
+  background: var(--bg);
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: clamp(90px, 12vh, 140px) clamp(24px, 5vw, 64px) clamp(60px, 8vh, 100px);
+}
+
+.art-grid{
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(14px, 2.2vw, 32px);
+  align-items: start;
+}
+
+.art-piece{
+  margin: 0;
+}
+
+.art-piece img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Section 1 — two pieces, same size, side by side */
+.section-1 .piece-a{ grid-column: 2 / span 5; }
+.section-1 .piece-b{ grid-column: 7 / span 5; }
+
+/* Section 2 — pair matched by height, not width */
+.pair-row{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(14px, 2.2vw, 32px);
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.pair-row .art-piece img{
+  width: auto;
+  max-width: 100%;
+}
+
+.pair-row--tall .art-piece img{ height: clamp(260px, 54vh, 620px); }
+
+/* Section 2.1 — the third piece, alone on its own screen */
+.section-2-1{ justify-content: center; }
+
+.solo-piece--wide img{
+  height: 60vh;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Section 3 — all four pieces scaled into an even 2x2 grid */
+.art-grid-4{
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: clamp(16px, 2.6vw, 40px);
+}
+
+.art-grid-4 .cell{
+  height: clamp(220px, 36vh, 420px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-grid-4 .cell img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.art-grid-4 .cell--pair{
+  gap: clamp(8px, 1.5vw, 20px);
+}
+
+.art-grid-4 .cell--pair img{
+  height: 100%;
+  width: auto;
+  max-width: calc(50% - 10px);
+  object-fit: contain;
+}
+
+/* Section 4 — single poster, scaled to fit fully in the viewport */
+.section-4{ justify-content: center; }
+
+.solo-piece--poster{
+  max-height: 78vh;
+}
+
+.solo-piece--poster img{
+  height: 78vh;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 860px){
+  .art-grid{ grid-template-columns: 1fr; }
+  .section-1 .piece-a,
+  .section-1 .piece-b{
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+  .art-grid{ row-gap: clamp(20px, 6vw, 36px); }
+  .collection{ padding-top: clamp(80px, 20vw, 110px); }
+
+  .pair-row{
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(20px, 6vw, 36px);
+  }
+  .pair-row--tall .art-piece img{
+    height: auto;
+    width: 100%;
+  }
+  .solo-piece--wide img{ height: 46vh; }
+  .art-grid-4{
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+  .art-grid-4 .cell{ height: auto; }
+  .art-grid-4 .cell img{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 34vh;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  .art-grid-4 .cell--pair{
+    align-items: flex-end;
+  }
+  .art-grid-4 .cell--pair img{
+    width: auto;
+    height: auto;
+    max-width: calc(50% - 6px);
+    max-height: 26vh;
+    object-fit: contain;
+  }
+  .solo-piece--poster{ max-height: 70vh; }
+  .solo-piece--poster img{ height: 70vh; }
+}
+
+/* ---------- Section 5 — Contact ---------- */
+.contact-section{
+  justify-content: center;
+}
+
+.contact-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  text-align: center;
+}
+
+.contact-info a{
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--ink);
+}
+
+/* ---------- Contact page ---------- */
+.contact{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: var(--bg);
+  text-align: center;
+}
+
+.contact a{
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--ink);
+}
+
+.back-link{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: clamp(20px, 4vw, 40px);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+}
+
+.back-link:hover{ border-color: var(--ink); }
