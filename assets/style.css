@@ -248,7 +248,10 @@ a{ color: inherit; text-decoration: none; }
 }
 
 .contact-info a{
-  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-family: 'NaturalMonoAltRegular', 'Courier New', monospace;
+  font-size: clamp(1.1rem, 2.6vw, 1.6rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   border-bottom: 1px solid var(--ink);
 }
 
