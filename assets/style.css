@@ -125,11 +125,20 @@ a{ color: inherit; text-decoration: none; }
 /* Section 2.1 — the third piece, alone on its own screen */
 .section-2-1{ justify-content: center; }
 
-.solo-piece--wide img{
+.solo-piece--wide{
+  width: 100%;
+  max-width: 1300px;
   height: 60vh;
-  width: auto;
-  max-width: 100%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.solo-piece--wide img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* Section 3 — all four pieces scaled into an even 2x2 grid */
@@ -204,7 +213,7 @@ a{ color: inherit; text-decoration: none; }
     width: 100%;
   }
   .section-2-1{ padding-left: 12px; padding-right: 12px; }
-  .solo-piece--wide img{ height: 62vh; }
+  .solo-piece--wide{ height: 62vh; }
   .art-grid-4{
     grid-template-columns: 1fr;
     grid-template-rows: none;
